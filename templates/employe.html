@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employé</title>
+</head>
+<body>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Life+Savers&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Life Savers', cursive;
+}
+.fond{
+    height: 100%;
+    width: 100%;
+    background-image: url("{{url_for('static', filename = 'wp2.png')}}");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+header{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    border-bottom: 2px solid rgb(170,170,170, 0.42);
+}
+.logo{
+    display: grid;
+    place-items: center;
+    width: 30%;
+}
+.logo img{
+    width: 130px;
+}
+@keyframes logoRotate {
+    from{
+        rotate: 0deg;
+    }
+    to{ 
+        rotate: 360deg;
+    }
+}
+.logo img:hover{
+    animation-name: logoRotate;
+    animation-duration: 700ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    transform: scale(1.1);
+}
+nav{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+nav a{
+    margin-left: 20px;
+    text-decoration: none;
+    color: #000000;
+    background-color: rgb(255,255,255, 0.38);
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 6px;
+    transition: 500ms;
+    font-weight: bold;
+}
+nav a:hover{
+    background-color: rgb(255,255,255, 1);
+    transform: scale(1.1);
+}
+.espace{
+    display: flex;
+    align-items: center;
+    width: 500px;
+}
+.espace button{
+    margin-left: 20px;
+    background-color: rgb(255,255,255, 0.38);
+    border: 0;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 500ms;
+    font-family: 'Life Savers', cursive;
+    font-weight: bold;
+}
+.espace button:hover{
+    background-color: rgb(255,255,255, 1);
+    transform: scale(1.1);
+}
+.main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bolder;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.blanche{
+    width: 90%;
+    height: 90%;
+    background-color: rgb(231,225,216, 0.77);
+    border-radius: 10px;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+}
+.left select{
+    background-color: rgb(0,0,0, 0.78);
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+.left input{
+    background-color: rgb(0,0,0, 0.78);
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.right{
+    padding-left: 10px;
+}
+.right input{
+    border-radius: 7px;
+}
+.right button{
+    background-color: rgb(0,0,0, 0.78);
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+#soin{
+    padding-top: 30px;
+}
+footer{
+    width: 100%;
+    height: 22%;
+    background-color: rgb(170,170,170, 0.72);
+    display: flex;
+}
+footer .text{
+    background-color: rgb(255,255,255, 0.66);
+    width: 30%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+footer .animal{
+    width: 70%;
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#chat{
+    width: 50px;
+}
+#chien{
+    width: 60px;
+}
+#lapin{
+    width: 35px;
+}
+footer .social{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.joinus{
+    height: 100%;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+}
+.social-icone{
+    height: 50%;
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+}
+.social-icone img{
+    width: 30px;
+    height: 30px;
+    transition: 250ms;
+}
+.social-icone img:hover{
+    transform: scale(1.2);
+}
+</style>
+    <main class="fond">
+        <header>
+            <div class="logo">
+                <a href="{{url_for('accueil')}}"><img src="{{url_for('static', filename = 'logo.png')}}" alt=""></a>
+            </div>
+            <nav>
+                <a href="">Les Refuges</a>
+                <a href="">Chiens</a>
+                <a href="">Chats</a>
+                <a href="">Lapins</a>
+            </nav>
+            <div class="espace">
+                <form action="connexion" id="employe">
+                    <button> Espace employé </button>
+                </form>
+                <form action="espace_client" id="client">
+                    <button> Espace client </button>
+                </form>
+            </div>
+        </header>
+        <section class="main">
+
+            <section class="blanche">
+                <div class="left">
+                    <h1> Bonjour {{identite}} !</h1>
+
+                    <p>Sélectionnez un animal pensionnaire à la SPA pour obtenir plus d'informations sur lui: </p>
+                    <form action="informations", method="get">
+                        <select name="animaux" method="get" action="/">
+                          {% for animal in liste_animal %}
+                          <option value="{{animal.nom}}, {{animal.espece}}">{{animal.nom}} ({{animal.espece}})</option>
+                          {% endfor %}
+                        </select>
+                        <input type="submit" value="Chercher">
+                    </form>
+                    </p>
+                  
+                    <p>Sélectionnez un refuge pour obtenir plus d'information sur son personnel: </p>
+                    <form action="private", method="get">
+                        <select name="refuges" method="get" action="/">
+                          {% for refuges in liste_refuges %}
+                          <option value="{{refuges.nom}}">{{refuges.nom}}</option>
+                          {% endfor %}
+                        </select>
+                        <input type="submit" value="Chercher">
+                    </form>
+                    </p>
+                    Voici la liste des animaux de la SPA néccesitant un rappel sur un de leur soin:
+                    {% for vaccin in lst_vaccination %}
+                    <p> - {{vaccin.nom}} ({{vaccin.espece}}) a besoin d'un rappel de {{vaccin.nom_soin}}</p>
+                    {% endfor %}
+                </div>
+                <div class="right">
+                    <form action="animal" method="post">
+                        <p>Vous venez d'accueillir un nouveau pensionnaire ? Alors enregistrer ces informations ci-dessous:</p>
+                        <p>- Son nom : <input type="text" name="nom" id="nom" placeholder="Nom de l'animal"></p>
+                        <p>- Son espèce : <input type="text" name="espece" id="espece" placeholder="Espèce de l'animal"></p>
+                        <p>- Son sexe : <input type="text" name="sexe" id="sexe" placeholder="Sexe (M ou F)"></p>
+                        <p>- Son âge (précis ou approximatif) : <input type="text" name="age" id="age" placeholder="Age"></p>
+                        <p>- Nom de son refuge actuel : <input type="text" name="refuge" id="refuge" placeholder="Nom du refuge"></p> <!-- Pense a convertir à l'id refuge-->
+                        <p>- Eventuels signe signe_distinctif : <input type="text" name="signe_distinctif" id="signe_distinctif" placeholder="Signe distinctif (facultatif)"></p>
+                        <button type="submit">Ajouter l'animal</button>
+                      </form>
+                      
+                      <form action="soin" method="post" id="soin">
+                        <p>Vous pouvez renseigner ici un soin effectuer sur un animal:</p>
+                        <p>- Nom de l'animal : <input type="text" name="nom_animal" id="nom_animal" placeholder="Nom de l'animal"></p>
+                        <p>- Nom du soin : <input type="text" name="nom_s" id="nom_s" placeholder="Ex: hydratation"></p>
+                        <p>- Type de soin : <input type="text" name="type_s" id="type_s" placeholder="Ex: vaccin"></p>
+                        <p>- Date du soin : <input type="text" name="date" id="date" placeholder="AAAA-MM-JJ"></p>
+                        <p>- Votre matricule : <input type="text" name="matricule" id="matricule" placeholder="Ex: 732HE89D"></p>
+                        <p>- date de rappel (si le soin a besoin d'un rappel) : <input type="text" name="delai_rappel" id="delai_rappel" placeholder="AAAA-MM-JJ"></p>
+                        <button type="submit">Ajouter un soin</button>
+                      </form>
+                </div>
+            </section>
+        </section>       
+    </main>
+    <footer>
+        <div class="text">
+            <p>Le Nombre <br> D'animaux <br> Inscrits</p>
+        </div>
+            <div class="animal">
+                <img src="{{url_for('static', filename = 'chat.png')}}" alt="" id="chat">
+                <p>500 Chats</p>
+            </div>
+            <div class="animal">
+                <img src="{{url_for('static', filename = 'chat.png')}}" alt="" id="chien">
+                <p>480 Chiens</p>
+            </div>
+            <div class="animal">
+                <img src="{{url_for('static', filename = 'lapin.png')}}" alt="" id="lapin">
+                <p>330 Lapins</p>
+            </div>
+        <div class="social">
+            <div class="joinus">
+                Rejoignez-Nous !
+            </div>
+            <div class="social-icone">
+               <a href="https://www.instagram.com/la_spa/?hl=fr"><img src="{{url_for('static', filename = 'insta.png')}}" alt=""></a> 
+               <a href="https://twitter.com/SPA_Officiel?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><img src="{{url_for('static', filename = 'twitter.png')}}" alt=""></a> 
+               <a href="https://fr-fr.facebook.com/spaofficiel/"><img src="{{url_for('static', filename = 'fb.png')}}" alt=""></a> 
+               <a href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQEFlvmC-lDskAAAAYUiYCdIim2GFf_N7htQEt2eju4Y52TlCIeHWlammzswxBSQ6j5NAN3qn13WFKvr6oaacPX9fftVs7H6zOKgDzK7CEaSitm3Jox9h_oUaUwE96pyi5oxJ18=&original_referer=https://www.google.com/&sessionRedirect=https%3A%2F%2Ffr.linkedin.com%2Fcompany%2Fla-spa"><img src="{{url_for('static', filename = 'linkedin.png')}}" alt=""></a> 
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
